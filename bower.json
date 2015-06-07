@@ -6,6 +6,8 @@
   ],
   "description": "A polymer element that composes one-dimensional arrays to bind to. Takes up to 10 data fields and joins them in an array.",
   "keywords": [
+	"array-compose",
+	"array-composer",
     "web-component",
     "web-components",
     "polymer",
@@ -25,7 +27,7 @@
   ],
   "main": "array-composer.html",
   "license": "http://khaoscoders.github.io/LICENSE.txt",
-  "homepage": "https://github.com/Khaos66/array-composer/",
+  "homepage": "https://github.com/KhaosCoders/array-composer/",
   "ignore": [
     "/.*",
     "/test/",

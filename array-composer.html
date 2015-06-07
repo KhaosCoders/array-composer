@@ -145,21 +145,59 @@ Use cases:
 			f9: {
 				type: Object,
 				value: null
-			}
+			},
 			
+			/**
+			 * Define the fields which will cause the arrays 
+			 * data-binding to be notified on change
+			 */
+			updateOn: {
+				type: String,
+				value: 'f0,f1,f2,f3,f4,f5,f6,f7,f8,f9'
+			}
 		},
 		
 		observers: [
-			'_arrayOptionsChanged(length, f0, f1, f2, f3, f4, f5, f6, f7, f8, f9)'
+			'_lengthChanged(length)',
+			'_f0Changed(f0)', 
+			'_f1Changed(f1)', 
+			'_f2Changed(f2)', 
+			'_f3Changed(f3)', 
+			'_f4Changed(f4)', 
+			'_f5Changed(f5)', 
+			'_f6Changed(f6)', 
+			'_f7Changed(f7)', 
+			'_f8Changed(f8)', 
+			'_f9Changed(f9)'
 		],
 		
-		_arrayOptionsChanged: function() {
-			// Compose fields to array
-			var arr = new Array();
-			for(var i=0; i<this.length; i++) {
-				arr.push(eval('this.f'+i));
+		_fieldChanged: function(index, value) {
+			// Update a field
+			if (index<this.length) {
+				this.array[index]=value;
+				if (this.updateOn && this.updateOn.indexOf('f'+index) > -1)
+					this._setArray(this.array);
 			}
-			// Update binding
+		},
+		
+		_f0Changed: function() { this._fieldChanged(0, this.f0); },
+		_f1Changed: function() { this._fieldChanged(1, this.f1); },
+		_f2Changed: function() { this._fieldChanged(2, this.f2); },
+		_f3Changed: function() { this._fieldChanged(3, this.f3); },
+		_f4Changed: function() { this._fieldChanged(4, this.f4); },
+		_f5Changed: function() { this._fieldChanged(5, this.f5); },
+		_f6Changed: function() { this._fieldChanged(6, this.f6); },
+		_f7Changed: function() { this._fieldChanged(7, this.f7); },
+		_f8Changed: function() { this._fieldChanged(8, this.f8); },
+		_f9Changed: function() { this._fieldChanged(9, this.f9); },
+		
+		_lengthChanged: function() {
+			// Compose fields to array
+			var arr = new Array(this.length);
+			for(var i=0; i<this.length; i++) {
+				arr[i]=this['f'+i];
+			}
+			// Always update binding
 			this._setArray(arr);
 		}
 	});
