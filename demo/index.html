@@ -1,0 +1,59 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 Khaos-Coders. All rights reserved.
+This code may only be used under the BSD style license found at http://khaoscoders.github.io/LICENSE.txt
+The complete set of authors may be found at http://khaoscoders.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://khaoscoders.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://khaoscoders.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>array-composer Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../array-composer.html">
+		
+		<link rel="stylesheet" href="../../paper-styles/paper-styles.html">
+		<link rel="import" href="../../paper-styles/demo-pages.html">
+		<link rel="import" href="../../paper-input/paper-input.html">
+  </head>
+  <body>
+		<!-- Enables polymer data-binding in main page. Yeay!! -->
+		<template is="dom-bind" id="dom-bind">
+			<div class="vertical layout">
+				
+				<H4>An example of <code>&lt;array-composer&gt;</code>:</H4>
+				<div>
+					Change the text in any input-field.<br/>
+					The area below is build using the <code>dom-repeat</code> element and will be updated through data-bindings.
+				</div>
+				
+				<paper-input-container>
+					<label>Field 0</label>
+					<input is="iron-input" bind-value="{{field0}}" value="Type">
+				</paper-input-container>
+				<paper-input-container>
+					<label>Field 1</label>
+					<input is="iron-input" bind-value="{{field1}}" value="something">
+				</paper-input-container>
+				<paper-input-container>
+					<label>Field 2</label>
+					<input is="iron-input" bind-value="{{field2}}" value="in">
+				</paper-input-container>
+				
+				<!-- simple, huh? =) -->
+				<array-composer array="{{inputArray}}" length="3" f0="[[field0]]" f1="[[field1]]" f2="[[field2]]"></array-composer>
+				
+				<H4>The following is updated via data-bindings</H4>
+				<div>
+					<template is="dom-repeat" items="{{inputArray}}">
+						<div><span>[[item]]</span></div>
+					</template>
+				</div>
+			</div>
+		</template>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 Khaos-Coders. All rights reserved.
+This code may only be used under the BSD style license found at http://khaoscoders.github.io/LICENSE.txt
+The complete set of authors may be found at http://khaoscoders.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://khaoscoders.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://khaoscoders.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../array-composer.html">
+  </head>
+  <body>
+
+    <array-composer length="2" f0="1" f1="2"></array-composer>
+
+    <script>
+      var myAc = document.querySelector('array-composer');
+
+      suite('<array-composer length="2" f0="1" f1="2">', function() {
+        test('read array length and fields', function() {
+          assert.equal(myAc.length, 2);
+          assert.equal(myAc.array.length, 2);
+					assert.equal(myAc.array[0], 1);
+					assert.equal(myAc.array[1], 2);
+        });
+      });
+			
+			suite('<array-composer>', function() {	
+        test('set length and fields', function() {
+          myAc.length=10;
+					myAc.f0=9;
+					myAc.f1=8;
+					myAc.f2=7;
+					myAc.f3=6;
+					myAc.f4=5;
+					myAc.f5=4;
+					myAc.f6=3;
+					myAc.f7=2;
+					myAc.f8=1;
+					myAc.f9=0;
+        });
+
+        test('read array length and fields', function() {
+          assert.equal(myAc.length, 10);
+          assert.equal(myAc.array.length, 10);
+					assert.equal(myAc.array[0], 9);
+					assert.equal(myAc.array[1], 8);
+					assert.equal(myAc.array[2], 7);
+					assert.equal(myAc.array[3], 6);
+					assert.equal(myAc.array[4], 5);
+					assert.equal(myAc.array[5], 4);
+					assert.equal(myAc.array[6], 3);
+					assert.equal(myAc.array[7], 2);
+					assert.equal(myAc.array[8], 1);
+					assert.equal(myAc.array[9], 0);
+        });
+				
+      });
+    </script>
+
+  </body>
+</html>

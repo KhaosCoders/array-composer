@@ -1,0 +1,167 @@
+<!--
+@license
+Copyright (c) 2015 Khaos-Coders. All rights reserved.
+This code may only be used under the BSD style license found at http://khaoscoders.github.io/LICENSE.txt
+The complete set of authors may be found at http://khaoscoders.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://khaoscoders.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://khaoscoders.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+This element helps composing arrays on-the-fly via data-bindings.
+
+Many elements take arrays as parameters, `dom-repeat` for example.
+If you can't - or simply don't want to - create the array manually, 
+this element is what you need!
+
+Thanks to the nature of data-bindings the array will always contain 
+the latest field values.
+
+You can bind up to 10 fields to this element and in return you get 
+an one-dimensional array containing all fields values.
+
+Example:
+		
+		<array-composer array="{{outputArray}}" 
+			length="3" 
+			f0="[[field0]]" 
+			f1="[[field1]]" 
+			f2="[[field2]]">
+		</array-composer>
+ 
+Use cases:
+	
+	On the main page, where you can have data-bindings using `dom-bind` 
+	template, but can't create arrays to bind to.
+	
+	Any other case where you're in need of a fast way to compose an array
+	from a few fields.
+ 
+@demo
+-->
+
+<script>
+	
+	Polymer({
+		
+		is: 'array-composer',
+		
+		properties: {
+			
+			/**
+			 * Will be set to the final array.
+			 */
+			array: {
+				type: Object,
+				notify: true,
+				readOnly: true
+			},
+			
+			/**
+			 * The resulting array length.
+			 */
+			length: {
+				value: 0,
+				type: Number
+			},
+			
+			/**
+			 * First field placed at array index 0
+			 */
+			f0: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Second field placed at array index 1
+			 */
+			f1: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Third field placed at array index 2
+			 */
+			f2: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Fourth field placed at array index 3
+			 */
+			f3: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Fifth field placed at array index 4
+			 */
+			f4: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Sixth field placed at array index 5
+			 */
+			f5: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Seventh field placed at array index 6
+			 */
+			f6: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Eighth field placed at array index 7
+			 */
+			f7: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Ninth field placed at array index 8
+			 */
+			f8: {
+				type: Object,
+				value: null
+			},
+			
+			/**
+			 * Tenth field placed at array index 9
+			 */
+			f9: {
+				type: Object,
+				value: null
+			}
+			
+		},
+		
+		observers: [
+			'_arrayOptionsChanged(length, f0, f1, f2, f3, f4, f5, f6, f7, f8, f9)'
+		],
+		
+		_arrayOptionsChanged: function() {
+			// Compose fields to array
+			var arr = new Array();
+			for(var i=0; i<this.length; i++) {
+				arr.push(eval('this.f'+i));
+			}
+			// Update binding
+			this._setArray(arr);
+		}
+	});
+	
+</script>
