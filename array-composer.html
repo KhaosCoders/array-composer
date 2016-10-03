@@ -51,7 +51,7 @@ Use cases:
 		properties: {
 			
 			/**
-			 * Will be set to the final array.
+			 * The output array will be set to this parameter.
 			 */
 			array: {
 				type: Object,
@@ -60,7 +60,7 @@ Use cases:
 			},
 			
 			/**
-			 * The resulting array length.
+			 * The number of fields in the array.
 			 */
 			length: {
 				value: 0,
@@ -174,9 +174,13 @@ Use cases:
 		_fieldChanged: function(index, value) {
 			// Update a field
 			if (index<this.length) {
-				this.array[index]=value;
+				var arr = new Array(this.length);
+			  for(var i=0; i<this.length; i++) {
+				  arr[i]=this['f'+i];
+			  }
+				arr[index]=value;
 				if (this.updateOn && this.updateOn.indexOf('f'+index) > -1)
-					this._setArray(this.array);
+					this._setArray(arr);
 			}
 		},
 		

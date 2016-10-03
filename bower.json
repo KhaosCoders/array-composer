@@ -1,6 +1,6 @@
 {
   "name": "array-composer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     "Khaos <khaos@khaos-coders.org>"
   ],
@@ -23,7 +23,8 @@
 	"create",
 	"bind",
 	"binding",
-	"data"
+	"data",
+	"join"
   ],
   "main": "array-composer.html",
   "license": "http://khaoscoders.github.io/LICENSE.txt",
